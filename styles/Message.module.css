@@ -7,7 +7,7 @@
 }
 
 .accessBox {
-  @apply flex flex-col justify-center rounded-sm bg-[#A7A7A7]/[2%] p-2 m-2 shadow-custom;
+  @apply justify-center rounded-sm bg-[#A7A7A7]/[2%] p-2 m-2 shadow-custom;
 }
 
 .title {

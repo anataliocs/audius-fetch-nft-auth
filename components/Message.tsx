@@ -75,9 +75,8 @@ const Message = () => {
   return (
     <MessageBox title="Unlock with NFT">
       <span>
-        Welcome to <span className="font-normal">Decentra-scape</span>, an
-        immersive digital world, where you can explore the frontier of Web3 in
-        virtual reality.
+        Welcome to the <span className="font-normal">Audius Exclusive Content Section</span>, 
+        where holding specific NFTs grants you special access to exclusive content.
       </span>
     </MessageBox>
   );

@@ -32,10 +32,8 @@ export default async function handler(
     solWallets: ['GrWNH9qfwrvoCEoTm65hmnSh4z3CD96SfhtfQY6ZKUfY']
   });
 
-  const { accountAddress } = req.body;
-
   return res.status(200).json({
-    isAuthenticated: true,
+    isAuthenticated: collectibleState.solCollectibles['GrWNH9qfwrvoCEoTm65hmnSh4z3CD96SfhtfQY6ZKUfY'].length > 0,
     solCollectibles: collectibleState.solCollectibles['GrWNH9qfwrvoCEoTm65hmnSh4z3CD96SfhtfQY6ZKUfY']
   });
 

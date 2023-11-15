@@ -46,7 +46,7 @@ Go to http://localhost:3000
 
 `pages/api/auth.ts`
   - Next.js API file
-  - Making a `POST` request to `http://localhost:3000/api/auth` with the wallet public address will call the Audius Fetch NFT client
+  - Making a `POST` request to `http://localhost:3000/api/auth` will call the Audius Fetch NFT client
 
 `helpers/store.ts`
   - This file sets up our zustand store. [Zustand](https://github.com/pmndrs/zustand) is a "small, fast and scalable bearbones state-management solution using simplified flux principles." Basically an easier, lighter-weight Redux.

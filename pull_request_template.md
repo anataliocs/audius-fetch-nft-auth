@@ -11,7 +11,7 @@
 
 
 ### What are the relevant tickets?
-https://mondorobot.atlassian.net/browse/LOOT-
+
 
 
 ### Screenshots (if appropriate)
