@@ -5,7 +5,7 @@ import useStore from '../helpers/store';
 import Button from '../components/Button';
 import AudiusLogo from '../components/icons/AudiusLogo';
 import Message from '../components/Message';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Web3 from 'web3';
 import LoadingSpinner from '../components/icons/LoadingSpinner';

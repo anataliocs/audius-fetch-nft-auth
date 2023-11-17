@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { FetchNFTClient, Collectible, CollectibleState } from '@audius/fetch-nft';
+require('dotenv').config();
 
 interface Data {
   isAuthenticated: boolean;
@@ -11,11 +12,11 @@ interface ResponseError {
 }
 
 interface FetchResponse {
-  ethCollectibles: CollectibleState;
   solCollectibles: CollectibleState;
 }
 
 const fetchClient = new FetchNFTClient();
+const solWalletAddress: string = process.env.SOL_WALLET_ADDRESS ? process.env.SOL_WALLET_ADDRESS : 'CgEZcNoj98ZW3xN7m6FooiCxfN7nQ69KBHPFejbxe3dW';
 
 export default async function handler(
   req: NextApiRequest,
@@ -28,12 +29,12 @@ export default async function handler(
   }
 
   var collectibleState: FetchResponse = await fetchClient.getCollectibles({
-    ethWallets: ['0x5A8443f456f490dceeAD0922B0Cc89AFd598cec9'],
-    solWallets: ['GrWNH9qfwrvoCEoTm65hmnSh4z3CD96SfhtfQY6ZKUfY']
+    solWallets: [solWalletAddress]
   });
 
   return res.status(200).json({
-    isAuthenticated: collectibleState.solCollectibles['GrWNH9qfwrvoCEoTm65hmnSh4z3CD96SfhtfQY6ZKUfY'].length > 0,
+    isAuthenticated: collectibleState.solCollectibles['GrWNH9qfwrvoCEoTm65hmnSh4z3CD96SfhtfQY6ZKUfY'] &&
+      collectibleState.solCollectibles['GrWNH9qfwrvoCEoTm65hmnSh4z3CD96SfhtfQY6ZKUfY'].length > 0,
     solCollectibles: collectibleState.solCollectibles['GrWNH9qfwrvoCEoTm65hmnSh4z3CD96SfhtfQY6ZKUfY']
   });
 
