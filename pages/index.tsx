@@ -3,13 +3,12 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import useStore from '../helpers/store';
 import Button from '../components/Button';
-import AudiusLogo from '../components/icons/AudiusLogo';
+import SpheronLogo from '../components/icons/SpheronLogo';
 import Message from '../components/Message';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Web3 from 'web3';
 import LoadingSpinner from '../components/icons/LoadingSpinner';
-import { Collectible } from '@audius/fetch-nft';
 
 const Home: NextPage = () => {
   const walletConnectionAttempted = useStore(
@@ -18,7 +17,6 @@ const Home: NextPage = () => {
   const isAuthenticated = useStore((state) => state.isAuthenticated);
   const walletAddress = useStore((state) => state.walletAddress);
   const errorMessage = useStore((state) => state.errorMessage);
-  const solCollectibles: Collectible[] = useStore<Collectible[]>((state) => state.solCollectibles);
   const [isLoading, setIsLoading] = useState(true);
 
   // check if wallet has already been connected and set isAuthenticated accordingly
@@ -47,8 +45,6 @@ const Home: NextPage = () => {
           throw new Error('No accounts have been authorized by MetaMask');
         }
         const { data } = await axios.post('/api/auth', { accountAddress });
-        console.log(data.solCollectibles);
-        useStore.setState({ solCollectibles: data.solCollectibles });
         useStore.setState({ isAuthenticated: data.isAuthenticated });
         useStore.setState({ walletConnectionAttempted: true });
         useStore.setState({ walletAddress: accountAddress });
@@ -103,10 +99,10 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Audius Fetch NFT Auth Project</title>
+        <title>Spheron Supernodez</title>
         <meta
           name="description"
-          content="NFT as authentication example project"
+          content="Deploy your node with Spheron"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -117,7 +113,7 @@ const Home: NextPage = () => {
       >
         <header>
           <div className={styles.logo}>
-            <AudiusLogo className="h-9" />
+            <SpheronLogo className="h-9" />
           </div>
           {walletAddress && (
             <div className={styles.address}>{`${walletAddress.substring(

@@ -1,11 +1,9 @@
-import { Collectible } from '@audius/fetch-nft';
 import useStore from '../helpers/store';
 import styles from '../styles/Message.module.css';
 
 interface MessageBoxProps {
   title: string;
   errorState?: boolean;
-  solCollectibleArray?: Collectible[];
   children: React.ReactNode;
 }
 
@@ -28,9 +26,7 @@ const MessageBox = ({ title, errorState, solCollectibleArray, children }: Messag
           solCollectibleArray.map(nft =>
           (
             <div className={styles.accessBox}>
-              <span><h5>Access granted to exclusive content: </h5><strong>{nft.name}</strong></span>
-              <img className={styles.nftImage} src={nft.imageUrl} />
-              <span className='text-[8px]'>NFT ID:{nft.id}</span>
+              <span><h5>Let's deploy a node! </h5><strong>{nft.name}</strong></span>
             </div>
           )
           )) : null
@@ -46,37 +42,26 @@ const Message = () => {
     (state) => state.walletConnectionAttempted
   );
   const isAuthenticated = useStore((state) => state.isAuthenticated);
-  const solCollectibles: Collectible[] = useStore<Collectible[]>((state) => state.solCollectibles);
 
   if (walletConnectionAttempted) {
     if (isAuthenticated) {
       return (
-        <MessageBox title="Exclusive Content Unlocked!" errorState={false} solCollectibleArray={solCollectibles}>
+        <MessageBox title="Logged in with Web3 Wallet!" errorState={false} >
         </MessageBox>
       );
     }
     return (
       <MessageBox title="Access Denied" errorState={true}>
         <p>
-          You don't have the authorized NFT in your MetaMask Wallet to enable
-          entry. Please check your account for an NFT with the following
-          contract address:
+          Test
         </p>
-        <a
-          className="block mt-4 font-mono text-2xl w-auto rounded-lg outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-[#473F42]"
-          href={`https://etherscan.io/address/${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}`}
-          target="blank"
-        >
-          {process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}
-        </a>
       </MessageBox>
     );
   }
   return (
-    <MessageBox title="Unlock with NFT">
+    <MessageBox title="Spheron Supernodez">
       <span>
-        Welcome to the <span className="font-normal">Audius Exclusive Content Section</span>, 
-        where holding specific NFTs grants you special access to exclusive content.
+        Deploy nodes in a click with <span className="font-normal">Spheron Supernodez</span>, no technical experience needed!
       </span>
     </MessageBox>
   );
